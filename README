@@ -1,0 +1,7 @@
+This is a prototype of an Authentication/Authorization service, implemented
+in Ruby on Rails.  It does nothing useful.  It contains no code you would
+want to copy or study, as I'm a total noob to Ruby/Rails.
+
+The service methods are in lib/auth_service.rb
+The methods are exposed via JSON-RPC, using http://agilewebdevelopment.com/plugins/json_rpc
+
