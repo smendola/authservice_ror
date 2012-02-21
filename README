@@ -1,0 +1,36 @@
+.rvmrc specifics the version of Ruby and the Gems Bundle name
+
+Instructions on installing and using RVM can be found here:
+
+http://beginrescueend.com/
+
+after making sure the version of Ruby specified is installed via RVM, run
+
+  $ bundle install
+
+
+Then create and prep the database:
+
+  $ rake db:create
+  $ rake db:migrate
+
+Database is configured in config/database.yml
+
+----
+
+There are two example auth services, based on your prototype requirements:
+
+1) REST based auth service
+2) JSON-RPC based auth service
+   ( follows the json-rpc spec defined here: http://json-rpc.org/wiki/specification )
+
+
+The models are:
+
+User, Role and Membership
+
+---
+
+Routes are specified in config/routes.rb
+
+All routes respond w/ XML or JSON, with the default being JSON
