@@ -2,9 +2,9 @@
 
 class AuthServiceController < ApplicationController
 
-  if @@auth_service.nil? or Rails.env.development?
+#  if @@auth_service.nil? or Rails.env.development?
     @@auth_service = AuthService.new
-  end
+#  end
 
   json_rpc_service :name     => 'AuthService',                                   # required
                    :id       => 'urn:uuid:fdba4820-276b-11dc-ab85-0002a5d5c51b', # required

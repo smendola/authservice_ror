@@ -8,8 +8,16 @@ class AuthServiceTest < ActiveSupport::TestCase
   end
 
 
-  test "ListUsers returns the two" do
+  test "bla" do
     users = @@svc.ListUsers
-    assert users.length == 2
+    assert users.length.empty?
   end
+
+  test "add one user" do
+    @@svc.AddUser( {
+                     :username => 'smendola',
+                     :password =>
+    })
+  end
+
 end

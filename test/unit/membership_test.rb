@@ -1,19 +1,20 @@
 require 'test_helper'
 
-class RoleAssigmentTest < ActiveSupport::TestCase
+class MembershipTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true
   end
 end
 
+
 # == Schema Information
 #
-# Table name: role_assigments
+# Table name: memberships
 #
-#  id         :integer(4)      not null, primary key
-#  user_id    :integer(4)
-#  role_id    :integer(4)
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  role_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

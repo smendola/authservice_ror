@@ -8,11 +8,12 @@ class UserTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer         not null, primary key
 #  username   :string(255)     not null
 #  first_name :string(255)     not null
 #  last_name  :string(255)     not null

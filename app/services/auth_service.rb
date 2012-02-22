@@ -25,9 +25,9 @@ class AuthService
   ######################################################################
   def AddUser(info)
     user = User.new
-    @user_props.each do |key|
-      val = info[key.to_s]
-      user[key] = val if not val.nil?        
+    @user_props.each do |sym|
+      val = info[sym.to_s]
+      user[sym] = val if not val.nil?        
     end
     user.save!
     return user

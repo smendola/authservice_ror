@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 
-
 # == Schema Information
 #
-# Table name: roles
+# Table name: memberships
 #
 #  id         :integer         not null, primary key
-#  name       :string(255)
+#  user_id    :integer
+#  role_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

@@ -6,13 +6,14 @@ class Membership < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: memberships
 #
-#  id         :integer(4)      not null, primary key
-#  user_id    :integer(4)
-#  role_id    :integer(4)
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  role_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
