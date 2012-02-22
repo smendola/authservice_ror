@@ -74,9 +74,6 @@ module JsonRpcClient
     # to the JSON-RPC 1.1 specifications.
     #
     def method_missing(name, *args)
-puts "***** LOCAL METHOD ARGS *****"
-args.each {|a| puts "->#{a.inspect}"}
-
       name = name.to_s
       req_wrapper = @get_procs.include?(name) ? Get.new(self, name, args) : Post.new(self, name, args)
       req = req_wrapper.req

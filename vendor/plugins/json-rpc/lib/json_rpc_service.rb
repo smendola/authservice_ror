@@ -347,8 +347,8 @@ module JsonRpcService
         def initialize(service, req, par)
           super service, req, par
           set_error(999, "Content-Type header must be application/json") and return unless req.env['CONTENT_TYPE'] == 'application/json'
-puts "# raw_post ########################################"
-puts req.raw_post
+#puts "# raw_post ########################################"
+#puts req.raw_post
           begin
             body = JSON.parse req.raw_post
           rescue Exception => e

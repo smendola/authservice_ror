@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'rdoc'
 gem 'eventmachine'
+gem 'awesome_print'
 
 group :staging, :production do
 end

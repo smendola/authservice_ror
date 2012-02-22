@@ -1,6 +1,10 @@
-require "auth_service"
+#require "auth_service"
 
 class AuthServiceController < ApplicationController
+
+  if @@auth_service.nil? or Rails.env.development?
+    @@auth_service = AuthService.new
+  end
 
   json_rpc_service :name     => 'AuthService',                                   # required
                    :id       => 'urn:uuid:fdba4820-276b-11dc-ab85-0002a5d5c51b', # required
@@ -13,57 +17,57 @@ class AuthServiceController < ApplicationController
 
 
   # TODO: Is it possible to clean up all the :proc => AuthService.new.method(:xxx) 's?
-  json_rpc_procedure :name       => 'ListUsers', :proc => AuthService.new.method(:ListUsers),
+  json_rpc_procedure :name       => 'ListUsers', :proc => @@auth_service.method(:ListUsers),
                      :summary    => 'Lists all users.',
                      :params     => [],
                      :return     => {:type => 'arr'},
                      :idempotent => true
 
-  json_rpc_procedure :name       => 'GetUser', :proc => AuthService.new.method(:GetUser),
+  json_rpc_procedure :name       => 'GetUser', :proc => @@auth_service.method(:GetUser),
                      :summary    => 'Get a User',
                      :params     => [{:name => 'username', :type => 'str'}],
                      :return     => {:type => 'obj'},
                      :idempotent => true
 
-  json_rpc_procedure :name       => 'DeleteUser', :proc => AuthService.new.method(:DeleteUser),
+  json_rpc_procedure :name       => 'DeleteUser', :proc => @@auth_service.method(:DeleteUser),
                      :summary    => 'Get a User (by username)',
                      :params     => [{:name => 'username', :type => 'str'}],
                      :return     => {:type => 'obj'},
                      :idempotent => false
 
-  json_rpc_procedure :name       => 'AddUser', :proc => AuthService.new.method(:AddUser),
+  json_rpc_procedure :name       => 'AddUser', :proc => @@auth_service.method(:AddUser),
                      :summary    => 'Add a User',
                      :params     => [{:name => 'user', :type => 'obj'}],
                      :return     => {:type => 'obj'},
                      :idempotent => false
 
-  json_rpc_procedure :name       => 'UpdateUser', :proc => AuthService.new.method(:UpdateUser),
+  json_rpc_procedure :name       => 'UpdateUser', :proc => @@auth_service.method(:UpdateUser),
                      :summary    => 'Update a User',
                      :params     => [{:name => 'user', :type => 'obj'}],
                      :return     => {:type => 'obj'},
                      :idempotent => false
 
 
-  json_rpc_procedure :name       => 'AddRole', :proc => AuthService.new.method(:AddRole),
+  json_rpc_procedure :name       => 'AddRole', :proc => @@auth_service.method(:AddRole),
                      :summary    => 'Add a Role',
                      :params     => [{:name => 'role', :type => 'obj'}],
                      :return     => {:type => 'obj'},
                      :idempotent => false
 
-  json_rpc_procedure :name       => 'ListRoles', :proc => AuthService.new.method(:ListRoles),
+  json_rpc_procedure :name       => 'ListRoles', :proc => @@auth_service.method(:ListRoles),
                      :summary    => 'Lists all roles.',
                      :params     => [],
                      :return     => {:type => 'arr'},
                      :idempotent => true
 
-  json_rpc_procedure :name       => 'ListUsersInRole', :proc => AuthService.new.method(:ListUsersInRole),
+  json_rpc_procedure :name       => 'ListUsersInRole', :proc => @@auth_service.method(:ListUsersInRole),
                      :summary    => 'Lists all users in given role.',
                      :params     => [{:name => 'role_name', :type => 'str'}],
                      :return     => {:type => 'arr'},
                      :idempotent => true
 
 
-  json_rpc_procedure :name       => 'AssignUserRoles', :proc => AuthService.new.method(:AssignUserRoles),
+  json_rpc_procedure :name       => 'AssignUserRoles', :proc => @@auth_service.method(:AssignUserRoles),
                      :summary    => 'Authenticate a User',
                      :params     => [
                                      {:name => 'username', :type => 'str'}, 
@@ -72,7 +76,7 @@ class AuthServiceController < ApplicationController
                      :return     => {:type => 'obj'},
                      :idempotent => false
 
-  json_rpc_procedure :name       => 'IsUserInRole', :proc => AuthService.new.method(:IsUserInRole),
+  json_rpc_procedure :name       => 'IsUserInRole', :proc => @@auth_service.method(:IsUserInRole),
                      :summary    => 'Does user have the role?',
                      :params     => [
                                      {:name => 'username', :type => 'str'}, 
@@ -81,7 +85,7 @@ class AuthServiceController < ApplicationController
                      :return     => {:type => 'obj'},
                      :idempotent => true
 
-  json_rpc_procedure :name       => 'AuthenticateUser', :proc => AuthService.new.method(:AuthenticateUser),
+  json_rpc_procedure :name       => 'AuthenticateUser', :proc => @@auth_service.method(:AuthenticateUser),
                      :summary    => 'Authenticate a User',
                      :params     => [
                                      {:name => 'username', :type => 'str'}, 

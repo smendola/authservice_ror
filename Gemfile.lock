@@ -30,6 +30,7 @@ GEM
     activesupport (3.0.6)
     annotate (2.4.0)
     arel (2.0.10)
+    awesome_print (1.0.2)
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -79,6 +80,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  awesome_print
   eventmachine
   jquery-rails
   rails (= 3.0.6)
