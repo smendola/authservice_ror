@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     def uniquify_username
       logger.debug username.class
       logger.debug username.method(:sub)
-      self.username = self.username.sub("#", Time.now.to_s)
+      self.username = self.username ? self.username.sub("#", Time.now.to_s) : nil
       logger.debug self.username
     end
 
