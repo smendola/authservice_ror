@@ -16,7 +16,7 @@ module JsonRpcService
     end
     
     def json_rpc_service(opts={})
-      session :off
+      #session :off
       include JsonRpcService::InstanceMethods
       @service = Service.new opts
     end
