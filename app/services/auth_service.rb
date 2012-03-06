@@ -26,7 +26,12 @@ class AuthService
   def AddUser(info)
     user = User.new
     @user_props.each do |sym|
-      val = info[sym.to_s]
+      #tricky stuff;
+      # when json is parsed, it construct info map as "username"=>"smendola"
+      # but I also want to be ale to handle :username=>"smendola" for CLI work
+      val = info[sym].nil? ? info[sym.to_s] : info[sym]
+
+      # here, on the other hand, it's always :username=>"smendola"
       user[sym] = val if not val.nil?        
     end
     user.save!
@@ -40,7 +45,7 @@ class AuthService
     username = info['username']
     user_id = info['id']
 
-    if not user_id.nil?
+    if not user_id.nil? or
       user = User.where(:id => user_id)[0]
       fail("User id #{user_id} does not exist") if user.nil?
     elsif not username.nil?
@@ -81,9 +86,9 @@ class AuthService
   ######################################################################
   def AddRole(info)
     role = Role.new
-    @role_props.each do |key|
-      val = info[key.to_s]
-      role[key] = val if not val.nil?        
+    @role_props.each do |sym|
+      val = info[sym].nil? ? info[sym.to_s] : info[sym]
+      role[sym] = val if not val.nil?
     end
     role.save!
     return role
@@ -111,7 +116,7 @@ class AuthService
     role = GetRole(role_name)
     # TODO: why not this?    Membership.where(:role_id => role.id).map {|m| m.user.username}
     Membership.where(:role_id => role.id).map do |m|
-      User.find(m.user_id).username
+      User.find(m.user_id)
     end
   end
 
